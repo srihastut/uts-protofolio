@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-site-cache-v1';
+const CACHE_NAME = 'my-site-cache-v2';
 const assets = [
   "https://srihastut.github.io/uts-protofolio/",
   "https://srihastut.github.io/uts-protofolio/index.html",
