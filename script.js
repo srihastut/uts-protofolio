@@ -1,85 +1,85 @@
+// Mengambil elemen-elemen HTML
 let menuIcon = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar'); // Fixed navbar selector to match the correct class name
-
+let navbar = document.querySelector('.navbar');
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
+let deferredPrompt; // Untuk menangani prompt instalasi PWA
+const installButton = document.getElementById("installButton");
 
-let deferredPrompt;
-
-// Event sebelum aplikasi diinstall
+// Event beforeinstallprompt untuk menampilkan tombol instalasi
 window.addEventListener("beforeinstallprompt", (e) => {
   console.log("beforeinstallprompt event fired");
   e.preventDefault();
   deferredPrompt = e;
-  document.getElementById("installButton").style.display = "block";
-});
+  installButton.style.display = "block";
 
-const installButton = document.getElementById("installButton");
-
-installButton.addEventListener("click", async () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === "accepted") {
-      console.log("User accepted the install prompt");
-    } else {
-      console.log("User dismissed the install prompt");
+  // Menangani klik pada tombol install
+  installButton.addEventListener("click", () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(choiceResult => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log("User accepted the install prompt");
+        } else {
+          console.log("User dismissed the install prompt");
+        }
+        deferredPrompt = null;
+        installButton.style.display = "none"; // Sembunyikan tombol setelah prompt ditampilkan
+      });
     }
-    deferredPrompt = null;
-    installButton.style.display = "none"; // Sembunyikan tombol setelah prompt ditampilkan
-  }
+  });
 });
 
 // Navigasi aktif saat di-scroll
 window.onscroll = () => {
-    sections.forEach(sec => {
-        let top = window.scrollY;
-        let offset = sec.offsetTop - 150;
-        let height = sec.offsetHeight;
-        let id = sec.getAttribute('id'); // Fixed variable name from `set` to `sec`
+  sections.forEach(sec => {
+    let top = window.scrollY;
+    let offset = sec.offsetTop - 150;
+    let height = sec.offsetHeight;
+    let id = sec.getAttribute('id');
 
-        if (top >= offset && top < offset + height) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                document.querySelector('header nav a[href="#' + id + '"]').classList.add('active');
-            });
-        }
-    });
+    if (top >= offset && top < offset + height) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        document.querySelector('header nav a[href="#' + id + '"]').classList.add('active');
+      });
+    }
+  });
 };
 
 // Pendaftaran Service Worker
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/uts-protofolio/service-worker.js')
-      .then(registration => {
-        console.log('Service Worker registered with scope:', registration.scope);
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(registration => {
+      console.log('Service Worker registered with scope:', registration.scope);
 
-        // Mengirim pesan untuk meminta ukuran cache
-        if (navigator.serviceWorker.controller) {
-          navigator.serviceWorker.controller.postMessage('get-cache-usage');
+      // Mengirim pesan untuk meminta ukuran cache
+      if (navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage('get-cache-usage');
+      }
+
+      navigator.serviceWorker.addEventListener('message', event => {
+        if (event.data.type === 'cache-usage') {
+          const sizeInKB = (event.data.size / 1024).toFixed(2);
+          document.getElementById('cache-usage').textContent = `Cache usage: ${sizeInKB} KB`;
         }
-
-        navigator.serviceWorker.addEventListener('message', event => {
-          if (event.data.type === 'cache-usage') {
-            const sizeInKB = (event.data.size / 1024).toFixed(2);
-            document.getElementById('cache-usage').textContent = `Cache usage: ${sizeInKB} KB`;
-          }
-        });
-      })
-      .catch(error => {
-        console.error('Service Worker registration failed:', error);
       });
+    })
+    .catch(error => {
+      console.error('Service Worker registration failed:', error);
+    });
 }
 
 // Fungsi toggle untuk Read More / Read Less
 function toggleContent() {
-    const boxes = document.querySelectorAll(".box");
-    const button = document.getElementById("toggle-button");
+  const boxes = document.querySelectorAll(".box");
+  const button = document.getElementById("toggle-button");
 
-    // Toggle visibilitas semua box
-    boxes.forEach(box => box.classList.toggle("show"));
+  // Toggle visibilitas semua box
+  boxes.forEach(box => box.classList.toggle("show"));
 
-    // Ubah teks tombol antara 'Read More' dan 'Read Less'
-    button.innerText = button.innerText === "Read More" ? "Read Less" : "Read More";
+  // Ubah teks tombol antara 'Read More' dan 'Read Less'
+  button.innerText = button.innerText === "Read More" ? "Read Less" : "Read More";
 }
 
 // Cek apakah browser mendukung IndexedDB
@@ -149,15 +149,14 @@ if (!window.indexedDB) {
 
 // Menu toggle
 menuIcon.onclick = () => {
-    menuIcon.classList.toggle('bx-x');
-    navbar.classList.toggle('active');
+  menuIcon.classList.toggle('bx-x');
+  navbar.classList.toggle('active');
 };
 
 // Meminta izin notifikasi saat halaman dimuat
 if ('Notification' in window) {
   Notification.requestPermission().then(permission => {
     if (permission === 'granted' && navigator.serviceWorker.controller) {
-      // Mengirim pesan ke service worker untuk menampilkan notifikasi
       navigator.serviceWorker.controller.postMessage({
         type: 'SHOW_NOTIFICATION'
       });
