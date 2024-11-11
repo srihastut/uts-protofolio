@@ -47,7 +47,7 @@ window.onscroll = () => {
 };
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
+    navigator.serviceWorker.register('/uts-protofolio/service-worker.js')
       .then(registration => {
         console.log('Service Worker registered with scope:', registration.scope);
   
@@ -90,7 +90,7 @@ if (!window.indexedDB) {
 
 // Register Service Worker
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
+  navigator.serviceWorker.register('/uts-protofolio/service-worker.js')
       .then(reg => console.log('Service Worker Registered'))
       .catch(err => console.log('Service Worker registration failed', err));
 }
