@@ -1,15 +1,15 @@
 const CACHE_NAME = 'my-site-cache-v1';
 const assets = [
-  "/",
-  "/index.html",
-  "/style.css",
-  "/script.js",
-  "/manifest.json",
-  "/image/icon-192x192.png",
-  "/image/image.jpeg",
-  "/image/certificate 1.png",
-  "/image/certificate 2.png",
-  "/image/certificate 3.png"
+  "/uts-protofolio",
+  "/uts-protofolio/index.html",
+  "/uts-protofolio/style.css",
+  "/uts-protofolio/script.js",
+  "/uts-protofolio/manifest.json",
+  "/uts-protofolio/icon-192x192.png",
+  "/uts-protofolio/image.jpeg",
+  "/uts-protofolio/certificate 1.png",
+  "/uts-protofolio/certificate 2.png",
+  "/uts-protofolio/certificate 3.png"
 ];
 
 // Install Service Worker dan caching file-file yang penting
@@ -75,6 +75,6 @@ self.addEventListener('message', event => {
 self.addEventListener('notificationclick', event => {
   event.notification.close(); // Menutup notifikasi saat diklik
   event.waitUntil(
-    clients.openWindow('https://github.com/srihastut') // URL yang akan dibuka saat notifikasi diklik
+    clients.openWindow('https://github.com/uts-protofolio') // URL yang akan dibuka saat notifikasi diklik
   );
 });
