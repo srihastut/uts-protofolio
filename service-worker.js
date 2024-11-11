@@ -1,15 +1,15 @@
 const CACHE_NAME = 'my-site-cache-v2';
 const assets = [
-  "https://srihastut.github.io/uts-protofolio/",
-  "https://srihastut.github.io/uts-protofolio/index.html",
-  "https://srihastut.github.io/uts-protofolio/style.css",
-  "https://srihastut.github.io/uts-protofolio/script.js",
-  "https://srihastut.github.io/uts-protofolio/manifest.json",
-  "https://srihastut.github.io/uts-protofolio/icon-192x192.png",
-  "https://srihastut.github.io/uts-protofolio/image.jpeg",
-  "https://srihastut.github.io/uts-protofolio/certificate1.png",
-  "https://srihastut.github.io/uts-protofolio/certificate2.png",
-  "https://srihastut.github.io/uts-protofolio/certificate3.png"
+  "/uts-protofolio/",
+  "/uts-protofolio/index.html",
+  "/uts-protofolio/style.css",
+  "/uts-protofolio/script.js",
+  "/uts-protofolio/manifest.json",
+  "/uts-protofolio/icon-192x192.png",
+  "/uts-protofolio/image.jpeg",
+  "/uts-protofolio/certificate1.png",
+  "/uts-protofolio/certificate2.png",
+  "/uts-protofolio/certificate3.png"
 ];
 
 self.addEventListener('install', event => {
