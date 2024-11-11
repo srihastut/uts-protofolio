@@ -1,15 +1,16 @@
 const CACHE_NAME = 'my-site-cache-v1';
 const assets = [
-  "/uts-protofolio/",                     // Pastikan halaman utama tersedia
-  "/uts-protofolio/index.html",            // Halaman utama
-  "/uts-protofolio/style.css",             // File CSS
-  "/uts-protofolio/script.js",             // File JavaScript
-  "/uts-protofolio/manifest.json",         // File manifest
-  "/uts-protofolio/icon-192x192.png",      // Ikon untuk notifikasi dan manifest
-  "/uts-protofolio/image.jpeg",            // Gambar lainnya
-  "/uts-protofolio/certificate1.png",      // Sertifikat 1
-  "/uts-protofolio/certificate2.png",      // Sertifikat 2
-  "/uts-protofolio/certificate3.png"       // Sertifikat 3
+  const assets = [
+  "https://srihastut.github.io/uts-protofolio/",
+  "https://srihastut.github.io/uts-protofolio/index.html",
+  "https://srihastut.github.io/uts-protofolio/style.css",
+  "https://srihastut.github.io/uts-protofolio/script.js",
+  "https://srihastut.github.io/uts-protofolio/manifest.json",
+  "https://srihastut.github.io/uts-protofolio/icon-192x192.png",
+  "https://srihastut.github.io/uts-protofolio/image.jpeg",
+  "https://srihastut.github.io/uts-protofolio/certificate1.png",
+  "https://srihastut.github.io/uts-protofolio/certificate2.png",
+  "https://srihastut.github.io/uts-protofolio/certificate3.png"
 ];
 
 self.addEventListener('install', event => {
@@ -18,10 +19,19 @@ self.addEventListener('install', event => {
     caches.open(CACHE_NAME)
       .then(cache => {
         console.log('Opened cache');
-        return cache.addAll(assets);
+        return Promise.allSettled(
+          assets.map(asset => cache.add(asset))
+        );
+      })
+      .then(results => {
+        results.forEach(result => {
+          if (result.status === 'rejected') {
+            console.error('Failed to cache asset:', result.reason);
+          }
+        });
       })
       .catch(error => {
-        console.error('Failed to cache assets:', error);
+        console.error('Failed to open cache:', error);
       })
   );
 });
