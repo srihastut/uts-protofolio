@@ -1,15 +1,15 @@
-const CACHE_NAME = 'my-site-cache-v2';
+const CACHE_NAME = 'my-site-cache-v1';
 const assets = [
-  "/uts-protofolio/",
-  "/uts-protofolio/index.html",
-  "/uts-protofolio/style.css",
-  "/uts-protofolio/script.js",
-  "/uts-protofolio/manifest.json",
-  "/uts-protofolio/icon-192x192.png",
-  "/uts-protofolio/image.jpeg",
-  "/uts-protofolio/certificate1.png",
-  "/uts-protofolio/certificate2.png",
-  "/uts-protofolio/certificate3.png"
+  "/uts-protofolio/",                     // Pastikan halaman utama tersedia
+  "/uts-protofolio/index.html",            // Halaman utama
+  "/uts-protofolio/style.css",             // File CSS
+  "/uts-protofolio/script.js",             // File JavaScript
+  "/uts-protofolio/manifest.json",         // File manifest
+  "/uts-protofolio/icon-192x192.png",      // Ikon untuk notifikasi dan manifest
+  "/uts-protofolio/image.jpeg",            // Gambar lainnya
+  "/uts-protofolio/certificate1.png",      // Sertifikat 1
+  "/uts-protofolio/certificate2.png",      // Sertifikat 2
+  "/uts-protofolio/certificate3.png"       // Sertifikat 3
 ];
 
 self.addEventListener('install', event => {
@@ -18,19 +18,10 @@ self.addEventListener('install', event => {
     caches.open(CACHE_NAME)
       .then(cache => {
         console.log('Opened cache');
-        return Promise.allSettled(
-          assets.map(asset => cache.add(asset))
-        );
-      })
-      .then(results => {
-        results.forEach(result => {
-          if (result.status === 'rejected') {
-            console.error('Failed to cache asset:', result.reason);
-          }
-        });
+        return cache.addAll(assets);
       })
       .catch(error => {
-        console.error('Failed to open cache:', error);
+        console.error('Failed to cache assets:', error);
       })
   );
 });
