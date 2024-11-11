@@ -12,8 +12,8 @@ const assets = [
   "/uts-protofolio/certificate3.png"       // Sertifikat 3
 ];
 
-// Install Service Worker dan caching file-file yang penting
 self.addEventListener('install', event => {
+  console.log('Service Worker Install Event');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
