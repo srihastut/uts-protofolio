@@ -1,37 +1,37 @@
 const CACHE_NAME = 'my-site-cache-v1';
 const assets = [
-  "/uts-protofolio/",
-  "/uts-protofolio/index.html",
-  "/uts-protofolio/style.css",
-  "/uts-protofolio/script.js",
-  "/uts-protofolio/manifest.json",
-  "/uts-protofolio/icon-192x192.png",
-  "/uts-protofolio/image.jpeg",
-  "/uts-protofolio/certificate1.png",
-  "/uts-protofolio/certificate2.png",
-  "/uts-protofolio/certificate3.png"
+  "/uts-protofolio/",                     // Pastikan halaman utama tersedia
+  "/uts-protofolio/index.html",            // Halaman utama
+  "/uts-protofolio/style.css",             // File CSS
+  "/uts-protofolio/script.js",             // File JavaScript
+  "/uts-protofolio/manifest.json",         // File manifest
+  "/uts-protofolio/icon-192x192.png",      // Ikon untuk notifikasi dan manifest
+  "/uts-protofolio/image.jpeg",            // Gambar lainnya
+  "/uts-protofolio/certificate1.png",      // Sertifikat 1
+  "/uts-protofolio/certificate2.png",      // Sertifikat 2
+  "/uts-protofolio/certificate3.png"       // Sertifikat 3
 ];
 
 // Install Service Worker dan caching file-file yang penting
-self.addEventListener('install', function(event) {
+self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(function(cache) {
+      .then(cache => {
         console.log('Opened cache');
         return cache.addAll(assets);
       })
-      .catch(function(error) {
+      .catch(error => {
         console.error('Failed to cache assets:', error);
       })
   );
 });
 
 // Activate Service Worker
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(function(cacheNames) {
+    caches.keys().then(cacheNames => {
       return Promise.all(
-        cacheNames.map(function(cacheName) {
+        cacheNames.map(cacheName => {
           if (cacheName !== CACHE_NAME) {
             console.log('Service Worker: Clearing old cache');
             return caches.delete(cacheName);
@@ -43,10 +43,10 @@ self.addEventListener('activate', function(event) {
 });
 
 // Fetch dan cek apakah file ada di cache
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
-      .then(function(response) {
+      .then(response => {
         // Jika ada di cache, return file dari cache
         if (response) {
           return response;
@@ -63,7 +63,7 @@ self.addEventListener('message', event => {
     const title = 'Hallo!';
     const options = {
       body: 'Selamat Datang di Web Portfolio Tuti. Terima kasih telah mengunjungi!',
-      icon: '/uts-protofolio/icon-192x192.png' // Path diperbaiki
+      icon: '/uts-protofolio/icon-192x192.png' // Path ikon diperbaiki
     };
 
     if (Notification.permission === 'granted') {
