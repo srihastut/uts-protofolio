@@ -1,6 +1,6 @@
 {
   "name": "Portfolio Website",
-  "short_name": "Portfolio Website",
+  "short_name": "Portfolio",
   "description": "A portfolio website web app",
   "start_url": "/uts-protofolio/",
   "display": "standalone",
@@ -13,7 +13,7 @@
       "type": "image/png"
     },
     {
-      "src": "/uts-protofolio/icon-192x192.png",
+      "src": "/uts-protofolio/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
