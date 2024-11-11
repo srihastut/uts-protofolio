@@ -2,7 +2,7 @@
   "name": "Portfolio Website",
   "short_name": "Portfolio Website",
   "description": "A portfolio website web app",
-  "start_url": "/",
+  "start_url": "/uts-protofolio/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
