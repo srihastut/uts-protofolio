@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
+    <button id="installButton" style="display: none;">Install App</button>
+
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <a href="#home" class="logo">Sri<span> Hastuti</span></a>
+
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#certifications">certifications</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="home" id="home">
+
+        <div class="home-img">
+            <img src="image/image.jpeg" alt="Profile Image">
+        </div>
+
+        <div class="home-content">
+            <h3>Hi</h3>
+            <h1>It's <span>Sri Hastuti</span></h1>
+            <p>Saya Sri Hastuti, seorang mahasiswi yang memiliki semangat dalam pengembangan web dan desain grafis. Dengan keterampilan di JavaScript, Python, dan desain visual, saya selalu berusaha menciptakan solusi inovatif untuk berbagai kebutuhan digital. Mari jelajahi karya dan perjalanan saya!</p>
+
+        </div>
+    </section>
+
+    <section class="about" id="about">
+
+        <div class="about-content">
+            <h2 class="heading">About <span>Me</span></h2>
+
+            <div class="about-container">
+                    <p>Saya memiliki minat yang kuat dalam pengembangan web dan desain pengalaman pengguna. Tujuan saya adalah membangun situs web yang tidak hanya menarik secara visual tetapi juga memberikan pengalaman yang lancar bagi pengguna. Dengan setiap proyek, saya bertujuan untuk meningkatkan keterampilan saya dan berkontribusi positif kepada komunitas teknologi. Berikut Data Diri Saya!"</p>
+        
+
+    <!-- Kotak untuk Keterampilan -->
+    <div class="box keterampilan">
+        <h3>Keterampilan</h3>
+        <ul>
+            <li>perkantoran: Surat Menyurat, mengantur Agenda pimpinan, Keuangan, Kearsipan</li>
+            <li>Bahasa Pemrograman: Javascript, Python</li>
+            <li>Desain: Canva</li>
+            <li>Database: MySQL</li>
+            <li>Tools: Visual Studio Code</li>
+        </ul>
+    </div>
+
+    <!-- Kotak untuk Data Pribadi -->
+    <div class="box hidden" id="data-diri">
+        <h3>Data Pribadi</h3>
+        <p><strong>Nama Lengkap:</strong> Sri Hastuti</p>
+        <p><strong>Tanggal Lahir:</strong> 27 Januari 2003</p>
+        <p><strong>Alamat:</strong> Jl. Dewi Sartika No. 223 Kel. Debong Kulon, Kota Tegal</p>
+        <p><strong>Telepon:</strong> 0878-4867-8300</p>
+        <p><strong>Email:</strong> srihastuti23092020@gmail.com</p>
+        <p><strong>Instagram:</strong> <a href="https://www.instagram.com/tuti24814/" target="_blank">tuti24814</a></p>
+    </div>
+
+    <!-- Kotak untuk Pendidikan -->
+    <div class="box hidden" id="pendidikan">
+        <h3>Pendidikan</h3>
+        <ul>
+            <li><strong>Kampus:</strong> STMIK YMI Tegal<br>
+                <strong>Program Studi:</strong> Sistem Informasi<br>
+                <strong>Semester:</strong> 5
+            </li>
+            <li><strong>SMK N 2 Kota Tegal<br>
+                Jurusan:</strong> Administrasi Perkantoran<br>
+                <strong>Tahun Lulus:</strong> 2022
+            </li>
+        </ul>
+    </div>
+
+    <!-- Kotak untuk Keterampilan -->
+    <div class="box hidden" id="keterampilan">
+        <h3>Keterampilan</h3>
+        <ul>
+            <li>Perkantoran: Surat Menyurat, mengatur Agenda pimpinan, Keuangan, Kearsipan</li>
+            <li>Bahasa Pemrograman: Javascript, Python</li>
+            <li>Desain: Canva</li>
+            <li>Database: MySQL</li>
+            <li>Tools: Visual Studio Code</li>
+        </ul>
+    </div>
+
+    <!-- Tombol Read More -->
+    <button class="btn" id="toggle-button" onclick="toggleContent()">Read More</button>
+
+</section>
+
+    <section class="projects" id="projects">
+        <h2 class="heading">Projects</h2>
+
+        <div class="projects-container">
+
+            <div class="projects-box">
+                <div class="projects-info">
+                    <h4>Korenpondensi</h4>
+                    <P>"Meningkatkan efisiensi surat-menyurat internal dan eksternal dengan menyusun prosedur standar yang mengurangi waktu pemrosesan surat, memastikan dokumen sampai ke tujuan dengan cepat dan tepat."</P>
+                </div>
+            </div>
+
+            <div class="projects-box">
+                <div class="projects-info">
+                    <h4>Arsip Surat</h4>
+                    <P>"Menerapkan sistem pengarsipan surat yang meningkatkan aksesibilitas dokumen dan mengurangi waktu pencarian arsip menjadi lebih efisien."</P>
+                </div>
+            </div>
+
+            <div class="projects-box">
+                <div class="projects-info">
+                    <h4>Kasir</h4>
+                    <P>"Berhasil meningkatkan akurasi laporan keuangan bulanan melalui penyusunan prosedur pemeriksaan ulang yang lebih sistematis, sehingga mengurangi kesalahan input data."</P>
+                </div>
+            </div>
+
+            <div class="projects-box">
+                <div class="projects-info">
+                    <h4>koordinator laundry</h4>
+                    <P>"Berhasil meningkatkan tingkat kepuasan pelanggan dengan memastikan cucian selesai tepat waktu dan dalam kondisi terbaik, yang berdampak pada peningkatan loyalitas pelanggan."</P>
+                </div>
+            </div>
+
+            <div class="projects-box">
+                <div class="projects-info">
+                    <h4>Implementasi Sistem CRUD dan Report Data Asal Sekolah</h4>
+                    <P>menyediakan solusi pengelolaan data yang efisien, membantu institusi pendidikan dalam mengelola data asal sekolah dengan lebih baik, meningkatkan efisiensi operasional</P>
+                </div>
+            </div>
+
+            <div class="projects-box">
+                <div class="projects-info">
+                    <h4>Koordinator Konsumsi dalam Kepanitiaan</h4>
+                    <P>Menjadi bagian dari kepanitiaan sebagai penanggung jawab bidang konsumsi, memastikan ketersediaan dan distribusi makanan serta minuman untuk seluruh peserta dan panitia acara.</P>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="certifications" id="certifications">
+        <h2>Sertifikat Keahlian</h2>
+        <div class="certifications-container">
+            <div class="certification-box">
+                <img src="image/certificate 1.png" alt="Certificate 1">
+                <h4>Database Foudations</h4>
+                <p>Diberikan oleh: Oracle Academy</p>
+                <p>Tahun: 2023</p>
+            </div>
+            <div class="certification-box">
+                <img src="image/certificate 2.png" alt="Certificate 2">
+                <h4>JavaScript Fundamentals</h4>
+                <p>Diberikan oleh: Oracle Academy</p>
+                <p>Tahun: 2023</p>
+            </div>
+            <div class="certification-box">
+                <img src="image/certificate 3.png" alt="Certificate 3">
+                <h4>Microsoft</h4>
+                <p>Diberikan oleh: STMIK YMI TEGAL</p>
+                <p>Tahun: 2024</p>
+            </div>
+            <!-- Tambahkan lebih banyak sertifikat di sini sesuai kebutuhan -->
+        </div>
+    </section>
+     
+
+    <section class="contact" id="contact">
+        <h2 class="heading">Contact <span>Me</span></h2>
+
+        <form id="contactForm">
+            <div class="input-box">
+                <!-- Tambahkan di bawah form untuk menampilkan daftar kontak -->
+            <div id="contactDisplay"></div>
+
+                <input type="text" id="fullName" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+
+            <div class="input-box">
+                <input type="number" id="phoneNumber" placeholder="Phone Number">
+            </div>
+
+            <textarea id="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+            <input type="submit" value="Send Message" class="btn">
+        </form>
+    </section>
+
+    <footer class="footer">
+
+        <div class="social">
+            <a href="https://github.com/srihastut"><i class="bx bxl-github"></i></a>
+            <a href="https://www.youtube.com/@srihastuti6588"><i class="bx bxl-youtube"></i></a>
+            <a href="https://www.instagram.com/tuti24814/"><i class="bx bxl-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/sri-hastuti-23b136329/"><i class="bx bxl-linkedin"></i></a>
+        </div>
+
+        <p class="copyright">
+            @Sri Hastuti | All Rights Reserved
+        </p>
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
